@@ -23,14 +23,16 @@ const Header = () => {
         </div>
         <div>
           <p>List Your Property</p>
-          <Link to='/register' className="btn border-0 hover:bg-slate-200 bg-white text-indigo-400 mx-5">
+          {
+            !user && <span><Link to='/register' className="btn border-0 hover:bg-slate-200 bg-white text-indigo-400 mx-5">
             Register
           </Link>
           <Link to='/login' className="btn border-0 hover:bg-slate-200  bg-white text-indigo-400">
             Login
-          </Link>
+          </Link></span>
+          }
           {
-            user && <span>Welcome {user.email} <button onClick={handleLogout}>signout</button></span>
+            user && <span> {user.displayName} <button onClick={handleLogout}>signout</button></span>
           }
         </div>
       </div>

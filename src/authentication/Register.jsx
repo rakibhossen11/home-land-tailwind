@@ -4,15 +4,16 @@ import { sendEmailVerification } from "firebase/auth";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const { createUser,user,sendverification } = useContext(AuthContext);
+  const { createUser,user,sendverification, updateUserData } = useContext(AuthContext);
 
   const handleRegister = (event) => {
     event.preventDefault();
 
     const form = event.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    console.log(name,email, password);
 
     if (password.length < 6) {
       setError("password must be 6 character or longer");
@@ -25,6 +26,7 @@ const Register = () => {
         console.log(loggedUser);
         event.target.reset();
         sendverification(result.user);
+        updateUserData(result.user,name);
       })
       .catch((error) => {
         setError(error.message);
@@ -43,6 +45,17 @@ const Register = () => {
             className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
           >
             <div className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="name"
+                  name="name"
+                  className="input input-bordered"
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
