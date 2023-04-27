@@ -22,7 +22,7 @@ const Header = () => {
           <Link to="/" className="btn btn-ghost normal-case text-xl">HomeLand.com</Link >
         </div>
         <div>
-          <p>List Your Property</p>
+          <p className="mr-10">List Your Property</p>
           {
             !user && <span><Link to='/register' className="btn border-0 hover:bg-slate-200 bg-white text-indigo-400 mx-5">
             Register
